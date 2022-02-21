@@ -1,0 +1,4 @@
+data/*.tsv
+data/vocab/*.txt
+data/model/*.txt
+data/embddings/*.txt
