@@ -5,9 +5,18 @@ from fastNLP import CrossEntropyLoss
 from torch.optim import Adam
 from fastNLP import AccuracyMetric
 from fastNLP.io.model_io import ModelSaver
-
 from model.biLstmMaxPoolCls import BiLSTMMaxPoolCls
+from dataset.dataSet import data_loader
 
+# path_config
+from config import vocab_path,target_vocab_path,embedding_path,model_sava_path
+
+# 加载数据
+data_bundle = data_loader(vocab_path, target_vocab_path)
+
+from fastNLP.embeddings import StaticEmbedding
+
+word2vec_embed = StaticEmbedding(data_bundle.get_vocab('chars'), model_dir_or_name=embedding_path)
 # 初始化模型
 model = BiLSTMMaxPoolCls(word2vec_embed, len(data_bundle.get_vocab('target')))
 
@@ -24,7 +33,8 @@ trainer = Trainer(train_data=data_bundle.get_dataset('train'), model=model, loss
 
 if  __name__=="__main__":
     trainer.train()  # 开始训练，训练完成之后默认会加载在dev上表现最好的模型
-
+    saver = ModelSaver(model_sava_path)
+    saver.save_pytorch(model)
 
 # 在测试集上测试一下模型的性能
 from fastNLP import Tester

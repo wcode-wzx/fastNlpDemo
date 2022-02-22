@@ -2,3 +2,7 @@ data/*.tsv
 data/vocab/*.txt
 data/model/*.txt
 data/embddings/*.txt
+fastNLP/*
+*.pyc
+*.pkl
+data/cache/*.tsv
