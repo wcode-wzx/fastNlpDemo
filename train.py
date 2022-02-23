@@ -9,7 +9,9 @@ from model.biLstmMaxPoolCls import BiLSTMMaxPoolCls
 from dataset.dataSet import data_loader
 
 # path_config
-from config import vocab_path,target_vocab_path,embedding_path,model_sava_path
+from config import get_train
+path = get_train()
+vocab_path, target_vocab_path, model_sava_path, embedding_path = path[0],path[1],path[2],path[3]
 
 # 加载数据
 data_bundle = data_loader(vocab_path, target_vocab_path)

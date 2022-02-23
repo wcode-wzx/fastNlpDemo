@@ -6,3 +6,4 @@ fastNLP/*
 *.pyc
 *.pkl
 data/cache/*.tsv
+test/*

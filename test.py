@@ -3,9 +3,12 @@ from fastNLP.core.predictor import Predictor
 from fastNLP.embeddings import StaticEmbedding
 from fastNLP.io import ModelLoader
 from model.biLstmMaxPoolCls import BiLSTMMaxPoolCls
-from config import vocab_path,target_vocab_path,embedding_path,model_sava_path
-
 from dataset.dataTest import data_loader
+
+# path_config
+from config import get_test
+path = get_test(2)
+vocab_path, target_vocab_path, model_sava_path, embedding_path = path[0],path[1],path[2],path[3]
 
 data_bundle = data_loader(vocab_path,target_vocab_path, name="test.tsv")
 
